@@ -36,6 +36,48 @@ class JoguinRPG:
 
         self.exibir_tela_inicial()
 
+    class Monstro:
+     def __init__(self, nome, vida, ataque):
+      self.nome = nome
+      self.vida = vida
+      self.ataque = ataque
+
+    class Goblin(Monstro):
+     def __init__(self):
+         super().__init__(nome="Goblin", vida=40, ataque=10)
+
+    class Orc(Monstro):
+     def __init__(self):
+         super().__init__(nome="Orc", vida=120, ataque=15)
+
+    class Golem(Monstro):
+     def __init__(self):
+         super().__init__(nome="Golem", vida=200, ataque=25)
+    
+    class Elemental(Monstro):
+     def __init__(self):
+         super().__init__(nome="Elemental", vida=300, ataque=35)
+
+    class ElementalAncião(Monstro):
+     def __init__(self):
+         super().__init__(nome="Elemental Ancião", vida=500, ataque=45)
+    
+    class ElementalAncião(Monstro):
+     def __init__(self):
+         super().__init__(nome="Dragão Morto Vivo", vida=700, ataque=45)
+    
+    class Dragao(Monstro):
+     def __init__(self):
+        super().__init__(nome="Dragão", vida=1000, ataque=50)
+
+    class DragaoAncião(Monstro):
+     def __init__(self):
+        super().__init__(nome="Dragão Ancião", vida=1400, ataque=100)
+
+    class DragaoAncião(Monstro):
+     def __init__(self):
+        super().__init__(nome="Dragão Ancião", vida=2200, ataque=200)
+
     def exibir_tela_inicial(self):
 
         label = tk.Label(self.frame, text="Bem vindo a um jogo inspirado em D&D de mesa!")
@@ -84,20 +126,41 @@ class JoguinRPG:
         btn_sair_loja = tk.Button(self.frame, text="Sair da Loja", command=self.exibir_tela_inicial, highlightthickness=0)
         btn_sair_loja.pack()
 
-    def espada_comum(self):
-        messagebox.showinfo("Ação", "Você comprou uma Espada Comum!")
-
-    # def ataque_ao_rei_dragão(self):
-        #messagebox.showinfo("ainda não incluso")
-
     def pocao_comum(self):
         messagebox.showinfo("Ação", "Você comprou uma Poção Comum! você recuperou 15 pontos de vida, muito bem!")
         self.vida += 15
         print(f"Vida após a poção: {self.vida}")  
         self.atualizar_vida()
 
+    def espada_comum(self):
+        messagebox.showinfo("Ação", "Você comprou uma Espada Comum!")
+        self.dano += 15  
+        self.atualizar_vida()
+
     def espada_magica(self):
         messagebox.showinfo("Ação", "Você comprou uma Espada Mágica!")
+        self.dano += 30  
+        self.atualizar_vida()
+
+    def Martelo_Anão(self):
+        messagebox.showinfo("Ação", "Você comprou uma Martelo dos anões!")
+        self.dano += 60  
+        self.atualizar_vida()
+
+    def Alabarda_Dourada(self):
+        messagebox.showinfo("Ação", "Você comprou uma Alabarda Dourada!")
+        self.dano += 120  
+        self.atualizar_vida()
+
+    def Espada_elfica(self):
+        messagebox.showinfo("Ação", "Parabéns, você comprou uma espada dos tempos dos elfos. Talvez agora possa enfrentar o dragão Rei que assola as Terras!")
+        self.dano += 240  
+        self.atualizar_vida()
+
+    def Matadora_de_Dragões(self):
+        messagebox.showinfo("Ação", "Parabéns, você comprou uma espada matadora de dragões com poder de quebrar nações com seus golpes. Agora pode facilmente enfrentar o dragão Rei que assola as Terras!")
+        self.dano += 400  
+        self.atualizar_vida()
 
     def atualizar_vida(self):
      nova_vida = f"Vida: {self.vida}"
