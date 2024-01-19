@@ -1,5 +1,3 @@
-
-
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
@@ -19,22 +17,22 @@ class JoguinRPG:
         except Exception as e:
             messagebox.showerror("Erro", f"Erro ao carregar a imagem: {str(e)}")
 
-       
         self.canvas = tk.Canvas(self.master, width=800, height=600)
-        self.canvas.pack()
+        self.canvas.grid(row=0, column=0, sticky="NSEW")
 
-        
+        self.master.columnconfigure(0, weight=1)
+        self.master.rowconfigure(0, weight=1)
+
         self.canvas.create_image(0, 0, anchor=tk.NW, image=self.background_photo)
 
-        
         self.frame = tk.Frame(self.canvas, bg="white", highlightthickness=0)
         self.frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
 
         self.vida = 100
         self.var_vida = tk.StringVar()
         self.var_vida.set(f"Vida: {self.vida}")
-        self.label_vida = tk.Label(self.frame, textvariable=self.var_vida)
-        self.label_vida.pack()
+        self.label_vida = tk.Label(self.master, textvariable=self.var_vida, font=('Helvetica', 12), bg="white")
+        self.label_vida.place(relx=0.15, rely=0.05, anchor=tk.W)
 
         self.exibir_tela_inicial()
 
@@ -89,16 +87,23 @@ class JoguinRPG:
     def espada_comum(self):
         messagebox.showinfo("Ação", "Você comprou uma Espada Comum!")
 
+    # def ataque_ao_rei_dragão(self):
+        #messagebox.showinfo("ainda não incluso")
+
     def pocao_comum(self):
         messagebox.showinfo("Ação", "Você comprou uma Poção Comum! você recuperou 15 pontos de vida, muito bem!")
         self.vida += 15
+        print(f"Vida após a poção: {self.vida}")  
         self.atualizar_vida()
 
     def espada_magica(self):
         messagebox.showinfo("Ação", "Você comprou uma Espada Mágica!")
 
     def atualizar_vida(self):
-        self.label_vida.config(text=f"Vida: {self.vida}")
+     nova_vida = f"Vida: {self.vida}"
+     self.var_vida.set(nova_vida)
+     self.label_vida.config(text=nova_vida)
+
 
     def voltar_para_tela_inicial(self):
         self.exibir_tela_inicial()
@@ -139,6 +144,14 @@ class JoguinRPG:
     def ir_para_guilda(self):
         mensagem = "Iria para a guilda, mas não ta completa kk tenta depois!"
         messagebox.showinfo("Ação", mensagem)
+        #label = tk.Label(self.frame, text="Você está na Guilda. O que você gostaria de fazer?")
+        #label.pack(pady=10)
+
+        #btn_pegar_missão = tk.Button(self.frame, text="Pegue sua missão", command=self.pegar_missão, highlightthickness=0)
+        #btn_pegar_missão.pack()
+
+        #btn_receber_pagamento = tk.Button(self.frame, text="Receba o pagamento de suas missões", command=self.receber_pagamento, highlightthickness=0)
+        #btn_receber_pagamento.pack()
 
     def limpar_tela(self):
         for widget in self.frame.winfo_children():
