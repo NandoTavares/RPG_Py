@@ -1,3 +1,5 @@
+
+
 import tkinter as tk
 from tkinter import messagebox
 from PIL import Image, ImageTk
@@ -17,16 +19,22 @@ class JoguinRPG:
         except Exception as e:
             messagebox.showerror("Erro", f"Erro ao carregar a imagem: {str(e)}")
 
-        # Cria o canvas após carregar a imagem
+       
         self.canvas = tk.Canvas(self.master, width=800, height=600)
         self.canvas.pack()
 
-        # Exibe a imagem no canvas
+        
         self.canvas.create_image(0, 0, anchor=tk.NW, image=self.background_photo)
 
-        # Cria um frame para organizar os widgets
+        
         self.frame = tk.Frame(self.canvas, bg="white", highlightthickness=0)
         self.frame.place(relx=0.5, rely=0.5, anchor=tk.CENTER)
+
+        self.vida = 100
+        self.var_vida = tk.StringVar()
+        self.var_vida.set(f"Vida: {self.vida}")
+        self.label_vida = tk.Label(self.frame, textvariable=self.var_vida)
+        self.label_vida.pack()
 
         self.exibir_tela_inicial()
 
@@ -73,6 +81,7 @@ class JoguinRPG:
 
         btn_pocao_comum = tk.Button(self.frame, text="Poção Comum", command=self.pocao_comum, highlightthickness=0)
         btn_pocao_comum.pack()
+        
 
         btn_sair_loja = tk.Button(self.frame, text="Sair da Loja", command=self.exibir_tela_inicial, highlightthickness=0)
         btn_sair_loja.pack()
@@ -82,9 +91,17 @@ class JoguinRPG:
 
     def pocao_comum(self):
         messagebox.showinfo("Ação", "Você comprou uma Poção Comum! você recuperou 15 pontos de vida, muito bem!")
+        self.vida += 15
+        self.atualizar_vida()
 
     def espada_magica(self):
         messagebox.showinfo("Ação", "Você comprou uma Espada Mágica!")
+
+    def atualizar_vida(self):
+        self.label_vida.config(text=f"Vida: {self.vida}")
+
+    def voltar_para_tela_inicial(self):
+        self.exibir_tela_inicial()
 
     def ir_para_dungeon(self):
         self.limpar_tela()
@@ -111,6 +128,8 @@ class JoguinRPG:
             self.voltar_para_tela_inicial()
         else:
             mensagem += "\nVocê não conseguiu fugir e continua na batalha contra o monstro!"
+            #aqui eu vou terminar o sistema de vida
+            self.atualizar_vida()
 
         messagebox.showinfo("Resultado do dado", mensagem)
         
