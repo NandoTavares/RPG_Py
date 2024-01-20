@@ -74,9 +74,9 @@ class JoguinRPG:
      def __init__(self):
         super().__init__(nome="Dragão Ancião", vida=1400, ataque=100)
 
-    class DragaoAncião(Monstro):
+    class ReiDragão(Monstro):
      def __init__(self):
-        super().__init__(nome="Dragão Ancião", vida=2200, ataque=200)
+        super().__init__(nome="Rei Dragão do Mal", vida=2200, ataque=200)
 
     def exibir_tela_inicial(self):
 
@@ -97,6 +97,9 @@ class JoguinRPG:
         btn_guilda = tk.Button(self.frame, text="Ir para a Guilda", command=self.ir_para_guilda, highlightthickness=0)
         btn_guilda.pack()
 
+        btn_ReiDragao = tk.Button(self.frame, text="Enfrentar o Rei Dragão Maligno", command=self.para_ReiDragao, highlightthickness=0)
+        btn_ReiDragao.pack()
+
 
     def ir_para_loja(self):
         self.limpar_tela()
@@ -113,25 +116,69 @@ class JoguinRPG:
     def comprar_itens(self):
         self.limpar_tela()
 
+        btn_pocao_comum = tk.Button(self.frame, text="Poção Comum", command=self.pocao_comum, highlightthickness=0)
+        btn_pocao_comum.pack()
+
         btn_espada_comum = tk.Button(self.frame, text="Espada Comum", command=self.espada_comum, highlightthickness=0)
         btn_espada_comum.pack()
 
         btn_espada_magica = tk.Button(self.frame, text="Espada Mágica", command=self.espada_magica, highlightthickness=0)
         btn_espada_magica.pack()
 
-        btn_pocao_comum = tk.Button(self.frame, text="Poção Comum", command=self.pocao_comum, highlightthickness=0)
-        btn_pocao_comum.pack()
+        btn_Martelo_Anão = tk.Button(self.frame, text="Martelo Anão ", command=self.Martelo_Anão, highlightthickness=0)
+        btn_Martelo_Anão.pack()
         
+        btn_Alabarda_Dourada = tk.Button(self.frame, text="Alabarda Dourada", command=self.Alabarda_Dourada, highlightthickness=0)
+        btn_Alabarda_Dourada.pack()
+
+        btn_Espada_elfica = tk.Button(self.frame, text="Espada Elfica", command=self.Espada_elfica, highlightthickness=0)
+        btn_Espada_elfica.pack()
+        
+        btn_Matadora_de_Dragões = tk.Button(self.frame, text="Lendária Matadora de Dragões", command=self.Matadora_de_Dragões, highlightthickness=0)
+        btn_Matadora_de_Dragões.pack()
 
         btn_sair_loja = tk.Button(self.frame, text="Sair da Loja", command=self.exibir_tela_inicial, highlightthickness=0)
         btn_sair_loja.pack()
 
+    #aq vão as poções
     def pocao_comum(self):
         messagebox.showinfo("Ação", "Você comprou uma Poção Comum! você recuperou 15 pontos de vida, muito bem!")
         self.vida += 15
         print(f"Vida após a poção: {self.vida}")  
         self.atualizar_vida()
 
+    def pocao_media(self):
+        messagebox.showinfo("Ação", "Você comprou uma Poção Media! você recuperou 30 pontos de vida, muito bem!")
+        self.vida += 30
+        print(f"Vida após a poção: {self.vida}")  
+        self.atualizar_vida()
+
+    def pocao_grande(self):
+        messagebox.showinfo("Ação", "Você comprou uma Poção Grande! você recuperou 50 pontos de vida, muito bem!")
+        self.vida += 50
+        print(f"Vida após a poção: {self.vida}")  
+        self.atualizar_vida()
+
+    def sangue_vampirico(self):
+        messagebox.showinfo("Ação", "Você comprou uma Poção feita com sangue vampirico, que feito raro! você recuperou 90 pontos de vida, muito bem!")
+        self.vida += 90
+        print(f"Vida após a poção: {self.vida}")  
+        self.atualizar_vida()
+
+    def Lagrimas_de_sereias(self):
+        messagebox.showinfo("Ação", "UOU, Você comprou uma Poção de Lagrimas de sereias, isso foi épico! você recuperou 90 pontos de vida, muito bem!")
+        self.vida += 150
+        print(f"Vida após a poção: {self.vida}")  
+        self.atualizar_vida()
+
+    def Fruto_elfico(self):
+        messagebox.showinfo("Ação", "QUE? Você acaba de comer o fruto da árvoré dos Elfos, seu feito não será esquecido! você recuperou 400 pontos de vida, muito bem!")
+        self.vida += 400
+        print(f"Vida após a poção: {self.vida}")  
+        self.atualizar_vida()
+
+    
+    #aq vão as armas
     def espada_comum(self):
         messagebox.showinfo("Ação", "Você comprou uma Espada Comum!")
         self.dano += 15  
