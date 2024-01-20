@@ -52,31 +52,35 @@ class JoguinRPG:
 
     class Golem(Monstro):
      def __init__(self):
-         super().__init__(nome="Golem", vida=200, ataque=25)
-    
+         super().__init__(nome="Golem: o monte andante", vida=200, ataque=25)
+
+    class Boss_Andar_1(Monstro):
+       def __init__(self):
+             super().__init__(nome="Minotauro: O chefão do Primeiro Andar", vida=220, ataque=20)
+
     class Elemental(Monstro):
      def __init__(self):
-         super().__init__(nome="Elemental", vida=300, ataque=35)
+         super().__init__(nome="Elemental: o espirito de fogo", vida=300, ataque=35)
 
-    class ElementalAncião(Monstro):
+    class Lich(Monstro):
      def __init__(self):
-         super().__init__(nome="Elemental Ancião", vida=500, ataque=45)
+         super().__init__(nome="Lich: o morto vivo", vida=500, ataque=45)
     
     class ElementalAncião(Monstro):
      def __init__(self):
-         super().__init__(nome="Dragão Morto Vivo", vida=700, ataque=45)
+         super().__init__(nome="Dragão Morto Vivo: a antiga lenda", vida=700, ataque=45)
     
     class Dragao(Monstro):
      def __init__(self):
-        super().__init__(nome="Dragão", vida=1000, ataque=50)
+        super().__init__(nome="Dragão: O Gigante Destruidor", vida=1000, ataque=50)
 
     class DragaoAncião(Monstro):
      def __init__(self):
-        super().__init__(nome="Dragão Ancião", vida=1400, ataque=100)
+        super().__init__(nome="Dragão Ancião: A montanha do Mal", vida=1400, ataque=100)
 
     class ReiDragão(Monstro):
      def __init__(self):
-        super().__init__(nome="Rei Dragão do Mal", vida=2200, ataque=200)
+        super().__init__(nome="Rei Dragão do Mal: A Definição de Pesadelo", vida=2200, ataque=200)
 
     def exibir_tela_inicial(self):
 
@@ -97,8 +101,8 @@ class JoguinRPG:
         btn_guilda = tk.Button(self.frame, text="Ir para a Guilda", command=self.ir_para_guilda, highlightthickness=0)
         btn_guilda.pack()
 
-        btn_ReiDragao = tk.Button(self.frame, text="Enfrentar o Rei Dragão Maligno", command=self.para_ReiDragao, highlightthickness=0)
-        btn_ReiDragao.pack()
+        #btn_ReiDragao = tk.Button(self.frame, text="Enfrentar o Rei Dragão Maligno", command=self.para_ReiDragao, highlightthickness=0)
+        #btn_ReiDragao.pack()
 
 
     def ir_para_loja(self):
@@ -118,6 +122,21 @@ class JoguinRPG:
 
         btn_pocao_comum = tk.Button(self.frame, text="Poção Comum", command=self.pocao_comum, highlightthickness=0)
         btn_pocao_comum.pack()
+
+        btn_pocao_media = tk.Button(self.frame, text="Poção Media", command=self.pocao_media, highlightthickness=0)
+        btn_pocao_media.pack()
+
+        btn_pocao_grande = tk.Button(self.frame, text="Poção Grande", command=self.pocao_grande, highlightthickness=0)
+        btn_pocao_grande.pack()
+
+        btn_pocao_de_sangue_vampirico = tk.Button(self.frame, text="Poção De Sangue Vampirico", command=self.pocao_de_sangue_vampirico, highlightthickness=0)
+        btn_pocao_de_sangue_vampirico.pack()
+
+        btn_pocao_de_Lagrimas_de_sereias = tk.Button(self.frame, text="Poção de Lagrimas de Sereias", command=self.pocao_de_Lagrimas_de_sereias, highlightthickness=0)
+        btn_pocao_de_Lagrimas_de_sereias.pack()
+
+        btn_Fruto_elfico = tk.Button(self.frame, text="Poção de Fruto Elfico", command=self.Fruto_elfico, highlightthickness=0)
+        btn_Fruto_elfico.pack()
 
         btn_espada_comum = tk.Button(self.frame, text="Espada Comum", command=self.espada_comum, highlightthickness=0)
         btn_espada_comum.pack()
