@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, ttk
 from PIL import Image, ImageTk
 import random
 import os
@@ -103,7 +103,34 @@ class JoguinRPG:
 
         #btn_ReiDragao = tk.Button(self.frame, text="Enfrentar o Rei Dragão Maligno", command=self.para_ReiDragao, highlightthickness=0)
         #btn_ReiDragao.pack()
+        label = tk.Label(self.frame, text="Você está na Loja. O que você gostaria de fazer?")
+        label.pack(pady=10)
 
+        
+        canvas = tk.Canvas(self.frame, bg="white")
+        canvas.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
+
+        
+        scrollbar = ttk.Scrollbar(self.frame, orient="vertical", command=canvas.yview)
+        scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+        canvas.configure(yscrollcommand=scrollbar.set)
+
+        
+        self.store_frame = tk.Frame(canvas, bg="white")
+        canvas.create_window((0, 0), window=self.store_frame, anchor=tk.NW)
+
+        
+        self.popular_itens_loja()
+
+        
+        canvas.bind("<Configure>", lambda event, canvas=canvas: self.on_canvas_configure(event, canvas))
+        self.store_frame.bind("<Configure>", lambda event, canvas=canvas: self.on_frame_configure(event, canvas))
+
+    def on_canvas_configure(self, event, canvas):
+        canvas.configure(scrollregion=canvas.bbox("all"))
+
+    def on_frame_configure(self, event, canvas):
+        canvas.itemconfig(self.canvas_frame, width=event.width)
 
     def ir_para_loja(self):
         self.limpar_tela()
@@ -239,6 +266,8 @@ class JoguinRPG:
 
     def ir_para_dungeon(self):
         self.limpar_tela()
+
+        self.andar_atual = 1
 
         label = tk.Label(self.frame, text="Você está na Dungeon. O que você gostaria de fazer?")
         label.pack(pady=10)
